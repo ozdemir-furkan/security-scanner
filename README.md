@@ -44,21 +44,21 @@ Security Scanner, web tabanlı bir güvenlik analiz platformudur. IP/Domain tara
 ## ⚙️ Kurulum
 
 1. Repoyu klonlayın:
--bash
--git clone https://github.com/yourusername/security-scanner.git
--cd securityscanner
+- bash
+- git clone https://github.com/yourusername/security-scanner.git
+- cd securityscanner
 
 
 2. Sanal Ortamı oluşturun:
--bash
--python -m venv venv
--source venv/bin/activate # Linux/Mac için
--venv\Scripts\activate # Windows için
+- bash
+- python -m venv venv
+- source venv/bin/activate # Linux/Mac için
+- venv\Scripts\activate # Windows için
 
 
 3. Gerekli Kütüphaneleri yükleyin:
--bash
--pip install -r requirements.txt
+- bash
+- pip install -r requirements.txt
 
 4. .env dosyasını oluşturun:
 - AWS_ACCESS_KEY=your_aws_access_key
@@ -73,12 +73,12 @@ Security Scanner, web tabanlı bir güvenlik analiz platformudur. IP/Domain tara
 
 
 5. Veritabanı migration'larını yapın:
--bash
--python manage.py migrate
+- bash
+- python manage.py migrate
 
 6. Projeyi çalıştırın:
--bash
--python manage.py runserver
+- bash
+- python manage.py runserver
 
 
 
