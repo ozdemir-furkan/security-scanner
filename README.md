@@ -44,38 +44,42 @@ Security Scanner, web tabanlı bir güvenlik analiz platformudur. IP/Domain tara
 ## ⚙️ Kurulum
 
 1. Repoyu klonlayın:
-bash
-git clone https://github.com/yourusername/security-scanner.git
-cd securityscanner
+-bash
+-git clone https://github.com/yourusername/security-scanner.git
+-cd securityscanner
+
 
 2. Sanal Ortamı oluşturun:
-bash
-python -m venv venv
-source venv/bin/activate # Linux/Mac için
-venv\Scripts\activate # Windows için
+-bash
+-python -m venv venv
+-source venv/bin/activate # Linux/Mac için
+-venv\Scripts\activate # Windows için
+
 
 3. Gerekli Kütüphaneleri yükleyin:
-bash
-pip install -r requirements.txt
+-bash
+-pip install -r requirements.txt
 
 4. .env dosyasını oluşturun:
-AWS_ACCESS_KEY=your_aws_access_key
-AWS_SECRET_KEY=your_aws_secret_key
-AWS_REGION=your_aws_region
-SES_VERIFIED_EMAIL=your_email@example.com
-VT_API_KEY=your_virustotal_api_key
-ABUSEIPDB_API_KEY=your_abuseipdb_api_key
-GOOGLE_API_KEY=your_google_api_key
-GOOGLE_CX_ID=your_google_cx_id
-WHOIS_API_KEY=your_whois_api_key
+- AWS_ACCESS_KEY=your_aws_access_key
+- AWS_SECRET_KEY=your_aws_secret_key
+- AWS_REGION=your_aws_region
+- SES_VERIFIED_EMAIL=your_email@example.com
+- VT_API_KEY=your_virustotal_api_key
+- ABUSEIPDB_API_KEY=your_abuseipdb_api_key
+- GOOGLE_API_KEY=your_google_api_key
+- GOOGLE_CX_ID=your_google_cx_id
+- WHOIS_API_KEY=your_whois_api_key
+
 
 5. Veritabanı migration'larını yapın:
-bash
-python manage.py migrate
+-bash
+-python manage.py migrate
 
 6. Projeyi çalıştırın:
-bash
-python manage.py runserver
+-bash
+-python manage.py runserver
+
 
 
 ## 📖 Kullanım Kılavuzu
