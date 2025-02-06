@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Scanner</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1 class="title">
+                <i class="fas fa-shield-alt"></i>
+                Security Scanner
+                <span class="subtitle">Güvenlik Analiz Platformu</span>
+            </h1>
+        </header>
+
+        <div class="search-container">
+            <div class="search-type-selector">
+                <button id="searchTypeBtn" class="search-type-btn">
+                    <span id="selectedType">Tarama Türü</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="search-type-dropdown" id="searchTypeDropdown">
+                    <div class="search-type-option" data-type="ip">
+                        <i class="fas fa-network-wired"></i>
+                        IP/Domain Tarama
+                    </div>
+                    <div class="search-type-option" data-type="dork">
+                        <i class="fas fa-search"></i>
+                        Google Dorking
+                    </div>
+                    <div class="search-type-option" data-type="password">
+                        <i class="fas fa-key"></i>
+                        Şifre Sızıntı Kontrolü
+                    </div>
+                    <div class="search-type-option" data-type="whois">
+                        <i class="fas fa-globe"></i>
+                        WHOIS Sorgusu
+                    </div>
+                </div>
+            </div>
+
+            <form id="searchForm" class="search-form" method="GET">
+                <input type="hidden" id="scan_type" name="scan_type" value="">
+                <div class="search-input-container">
+                    <input type="text" id="searchInput" name="searchInput" class="search-input" placeholder="Aramak istediğiniz değeri girin..." required>
+                    <button type="submit" class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        {% if result %}
+        <div class="results-container">
+            <h2 class="results-title">
+                <i class="fas fa-chart-bar"></i>
+                Sonuçlar
+            </h2>
+            <div class="results-content">
+                <pre>{{ result | safe }}</pre>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if recent_scans %}
+        <div class="recent-scans">
+            <h2 class="results-title">
+                <i class="fas fa-history"></i>
+                Son Taramalar
+            </h2>
+            <div class="scan-history">
+                {% for scan in recent_scans %}
+                <div class="scan-item {% if scan.is_threat %}threat{% endif %}">
+                    <div class="scan-type">
+                        <i class="fas fa-{% if scan.scan_type == 'ip' %}network-wired{% elif scan.scan_type == 'dork' %}search{% elif scan.scan_type == 'password' %}key{% else %}globe{% endif %}"></i>
+                        {{ scan.get_scan_type_display }}
+                    </div>
+                    <div class="scan-query">{{ scan.query }}</div>
+                    <div class="scan-date">{{ scan.created_at|date:"d.m.Y H:i" }}</div>
+                    <div class="scan-risk" title="Risk Skoru">
+                        <div class="risk-bar" style="width: {{ scan.risk_score }}%"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
